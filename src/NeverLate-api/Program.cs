@@ -1,7 +1,17 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using NeverLate_api.Ioc.Extensions;
 using NeverLate_api.Persistence.Database;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
+{
+    builder.RegisterServices();
+});
+    
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
