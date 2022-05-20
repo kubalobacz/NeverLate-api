@@ -15,6 +15,22 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Resul
     
     public async Task<Result<Unit, CreateUserErrorReasonEnum>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
-        var userExists = await _userManager.FindByEmailAsync(request.Email);  
+        var userExists = await _userManager.FindByEmailAsync(request.Email);
+        if (userExists is not null)
+        {
+            return Result<Unit, CreateUserErrorReasonEnum>.Failure(CreateUserErrorReasonEnum.UserWithSameEmailFound);
+        }
+
+        var identityUser = new IdentityUser
+        {
+            Email = request.Email,
+        };
+        var createResult = await _userManager.CreateAsync(identityUser, request.Password);
+        if (!createResult.Succeeded)
+        {
+            return Result<Unit, CreateUserErrorReasonEnum>.Failure(CreateUserErrorReasonEnum.Other);
+        }
+        
+        return Result<Unit, CreateUserErrorReasonEnum>.Success(Unit.Value);
     }
 }
