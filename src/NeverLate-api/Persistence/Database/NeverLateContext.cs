@@ -23,7 +23,6 @@ public class NeverLateContext : IdentityDbContext<IdentityUser>
             .Ignore(c => c.EmailConfirmed)
             .Ignore(c => c.LockoutEnabled)
             .Ignore(c => c.LockoutEnd)
-            .Ignore(c => c.NormalizedEmail)
             .Ignore(c => c.PhoneNumber)
             .Ignore(c => c.SecurityStamp)
             .Ignore(c => c.AccessFailedCount)
