@@ -1,5 +1,8 @@
+using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NeverLate_api.Ioc.Extensions;
 using NeverLate_api.Persistence.Database;
@@ -11,9 +14,13 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 {
     builder.RegisterServices();
 });
-    
 
-builder.Services.AddControllers();
+
+builder.Services.AddControllers()
+    .AddFluentValidation(configuration =>
+    {
+        configuration.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+    });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<NeverLateContext>(options =>
@@ -21,6 +28,7 @@ builder.Services.AddDbContext<NeverLateContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("NeverLateDB");
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
+builder.Services.AddIdentityCore<IdentityUser>();
 
 var app = builder.Build();
 
