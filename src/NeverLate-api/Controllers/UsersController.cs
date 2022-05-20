@@ -24,8 +24,8 @@ public class UsersController : ControllerBase
         return result switch
         {
             {ErrorReason: CreateUserErrorReasonEnum.UserWithSameEmailFound} => BadRequest(),
-            {IsSuccess: false} => StatusCode(500),
-            _ => Ok()
+            {IsSuccess: false} => StatusCode(500, "Creating user failed."),
+            _ => Ok("User created.")
         };
     }
 }
