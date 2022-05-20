@@ -1,14 +1,24 @@
 namespace NeverLate_api.Mediator;
 
-public class Result<TValue, TErrorReason> where TErrorReason: struct
+public class Result<TValue>
 {
-    public bool IsSuccess { get; private set; }
-    public TValue Value { get; private set; }
-    public string[] Errors { get; private set; }
-    public TErrorReason ErrorReason { get; set; }
+    public bool IsSuccess { get; private init; }
+    public TValue Value { get; private init; }
 
     private Result() { }
 
-    public static Result<TValue, TErrorReason> Success(TValue value) => new Result<TValue, TErrorReason>() { IsSuccess = true, Value = value };
-    public static Result<TValue, TErrorReason> Failure(TErrorReason errorReason, params string[] errors) => new Result<TValue, TErrorReason>() { IsSuccess = false, Errors = errors, ErrorReason = errorReason};
+    public static Result<TValue> Success(TValue value) => new() { IsSuccess = true, Value = value };
+    public static Result<TValue> Failure() => new() { IsSuccess = false};
+}
+
+public class Result<TValue, TErrorReason> where TErrorReason: struct
+{
+    public bool IsSuccess { get; private init; }
+    public TValue Value { get; private init; }
+    public TErrorReason ErrorReason { get; private init; }
+
+    private Result() { }
+
+    public static Result<TValue, TErrorReason> Success(TValue value) => new() { IsSuccess = true, Value = value };
+    public static Result<TValue, TErrorReason> Failure(TErrorReason errorReason) => new() { IsSuccess = false, ErrorReason = errorReason};
 }
