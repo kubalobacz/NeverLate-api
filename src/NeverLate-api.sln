@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeverLate-api", "NeverLate-api\NeverLate-api.csproj", "{B8216C66-7958-446F-B18F-403A1C127BEF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DC26519F-FE59-45A5-BD21-D2699855898E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeverLate.UnitTests", "NeverLate.UnitTests\NeverLate.UnitTests.csproj", "{8B6DD749-8CC7-4A59-9EBB-08A56BAD92F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,12 @@ Global
 		{B8216C66-7958-446F-B18F-403A1C127BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8216C66-7958-446F-B18F-403A1C127BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8216C66-7958-446F-B18F-403A1C127BEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B6DD749-8CC7-4A59-9EBB-08A56BAD92F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B6DD749-8CC7-4A59-9EBB-08A56BAD92F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B6DD749-8CC7-4A59-9EBB-08A56BAD92F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B6DD749-8CC7-4A59-9EBB-08A56BAD92F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8B6DD749-8CC7-4A59-9EBB-08A56BAD92F6} = {DC26519F-FE59-45A5-BD21-D2699855898E}
 	EndGlobalSection
 EndGlobal
