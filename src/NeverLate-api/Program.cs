@@ -4,6 +4,7 @@ using Autofac.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using NeverLate_api.Authentication;
 using NeverLate_api.Ioc.Extensions;
 using NeverLate_api.Persistence.Database;
 
@@ -14,7 +15,6 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 {
     builder.RegisterServices();
 });
-
 
 builder.Services.AddControllers()
     .AddFluentValidation(configuration =>
@@ -28,7 +28,15 @@ builder.Services.AddDbContext<NeverLateContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("NeverLateDB");
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
-builder.Services.AddIdentityCore<IdentityUser>();
+
+builder.Services.AddIdentityCore<IdentityUser>(options =>
+{
+    options.Password.RequireDigit = PasswordRulesProvider.RequireDigit;
+    options.Password.RequiredLength = PasswordRulesProvider.RequiredLength;
+    options.Password.RequireLowercase = PasswordRulesProvider.RequireLowercase;
+    options.Password.RequireUppercase = PasswordRulesProvider.RequireUppercase;
+    options.Password.RequireNonAlphanumeric = PasswordRulesProvider.RequireNonAlphanumeric;
+});
 
 var app = builder.Build();
 
