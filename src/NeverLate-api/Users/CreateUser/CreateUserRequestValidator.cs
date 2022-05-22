@@ -1,4 +1,6 @@
 using FluentValidation;
+using NeverLate_api.Authentication;
+using NeverLate_api.Validation.Validators;
 
 namespace NeverLate_api.Users.CreateUser;
 
@@ -11,8 +13,8 @@ public class CreateUserRequestValidator : AbstractValidator<CreateUserRequest>
         RuleFor(r => r.Email)
             .EmailAddress();
         RuleFor(r => r.Password)
-            .MinimumLength(8)
-            .Must(p => p.Any(char.IsDigit))
+            .MinimumLength(PasswordRulesProvider.RequiredLength)
+            .SetValidator(new MustContainDigitValidator<CreateUserRequest>())
             .WithMessage("Password must contain at least 1 digit.");
     }
 }
