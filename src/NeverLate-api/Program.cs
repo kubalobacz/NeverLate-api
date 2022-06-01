@@ -14,7 +14,7 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
 builder.Host.ConfigureAppConfiguration((builderContext, configurationBuilder) =>
 {
-    configurationBuilder.AddJsonFile("Configuration/identity-rules.json", false, true);
+    configurationBuilder.AddJsonFile("Configuration/password-rules.json", false, true);
 });
 
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
