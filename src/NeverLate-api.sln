@@ -6,7 +6,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DC26519F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeverLate.UnitTests", "NeverLate.UnitTests\NeverLate.UnitTests.csproj", "{8B6DD749-8CC7-4A59-9EBB-08A56BAD92F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeverLate.IntegrationTests", "NeverLate.IntegrationTests\NeverLate.IntegrationTests.csproj", "{1BEEA70E-A7F7-487D-9504-8968E5B1CFA5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeverLate.In-Memory-IntegrationTests", "NeverLate.In-Memory-IntegrationTests\NeverLate.In-Memory-IntegrationTests.csproj", "{1BEEA70E-A7F7-487D-9504-8968E5B1CFA5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeverLate-api.FluentValidation.Extension", "NeverLate-api.FluentValidation.Extension\NeverLate-api.FluentValidation.Extension.csproj", "{B88D8A08-AECF-4184-B83E-EB8A323BCCF3}"
 EndProject
