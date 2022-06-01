@@ -1,10 +1,10 @@
 namespace NeverLate_api.Authentication;
 
-public static class PasswordRulesProvider
+public class PasswordRulesProvider
 {
-    public const bool RequireDigit = true;
-    public const int RequiredLength = 8;
-    public const bool RequireLowercase = false;
-    public const bool RequireUppercase = false;
-    public const bool RequireNonAlphanumeric = false;
+    public bool RequireDigit { get; set; }
+    public int RequiredLength { get; set; }
+    public bool RequireLowercase { get; set; }
+    public bool RequireUppercase { get; set; }
+    public bool RequireNonAlphanumeric { get; set; }
 }
