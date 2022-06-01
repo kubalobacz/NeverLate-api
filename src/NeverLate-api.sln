@@ -6,6 +6,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DC26519F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeverLate.UnitTests", "NeverLate.UnitTests\NeverLate.UnitTests.csproj", "{8B6DD749-8CC7-4A59-9EBB-08A56BAD92F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeverLate.IntegrationTests", "NeverLate.IntegrationTests\NeverLate.IntegrationTests.csproj", "{1BEEA70E-A7F7-487D-9504-8968E5B1CFA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeverLate-api.FluentValidation.Extension", "NeverLate-api.FluentValidation.Extension\NeverLate-api.FluentValidation.Extension.csproj", "{B88D8A08-AECF-4184-B83E-EB8A323BCCF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,8 +24,17 @@ Global
 		{8B6DD749-8CC7-4A59-9EBB-08A56BAD92F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B6DD749-8CC7-4A59-9EBB-08A56BAD92F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B6DD749-8CC7-4A59-9EBB-08A56BAD92F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BEEA70E-A7F7-487D-9504-8968E5B1CFA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BEEA70E-A7F7-487D-9504-8968E5B1CFA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BEEA70E-A7F7-487D-9504-8968E5B1CFA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BEEA70E-A7F7-487D-9504-8968E5B1CFA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B88D8A08-AECF-4184-B83E-EB8A323BCCF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B88D8A08-AECF-4184-B83E-EB8A323BCCF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B88D8A08-AECF-4184-B83E-EB8A323BCCF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B88D8A08-AECF-4184-B83E-EB8A323BCCF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8B6DD749-8CC7-4A59-9EBB-08A56BAD92F6} = {DC26519F-FE59-45A5-BD21-D2699855898E}
+		{1BEEA70E-A7F7-487D-9504-8968E5B1CFA5} = {DC26519F-FE59-45A5-BD21-D2699855898E}
 	EndGlobalSection
 EndGlobal
