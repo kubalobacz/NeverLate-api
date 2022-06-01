@@ -5,17 +5,24 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NeverLate_api.Authentication;
-using NeverLate_api.Ioc.Extensions;
+using NeverLate_api.DependencyInjection.Extensions;
 using NeverLate_api.Persistence.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
+
+builder.Host.ConfigureAppConfiguration((builderContext, configurationBuilder) =>
 {
-    builder.RegisterServices();
+    configurationBuilder.AddJsonFile("Configuration/identity-rules.json", false, true);
 });
 
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
+{
+    containerBuilder.RegisterServicesWithAutofac();
+});
+
+builder.Services.RegisterConfigurations(builder);
 builder.Services.AddControllers()
     .AddFluentValidation(configuration =>
     {
@@ -28,14 +35,16 @@ builder.Services.AddDbContext<NeverLateContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("NeverLateDB");
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
+builder.Services.AddOptions();
 
 builder.Services.AddIdentityCore<IdentityUser>(options =>
 {
-    options.Password.RequireDigit = PasswordRulesProvider.RequireDigit;
-    options.Password.RequiredLength = PasswordRulesProvider.RequiredLength;
-    options.Password.RequireLowercase = PasswordRulesProvider.RequireLowercase;
-    options.Password.RequireUppercase = PasswordRulesProvider.RequireUppercase;
-    options.Password.RequireNonAlphanumeric = PasswordRulesProvider.RequireNonAlphanumeric;
+    var passwordRulesProvider = builder.Configuration.GetSection("PasswordRules").Get<PasswordRulesProvider>();
+    options.Password.RequireDigit = passwordRulesProvider.RequireDigit;
+    options.Password.RequiredLength = passwordRulesProvider.RequiredLength;
+    options.Password.RequireLowercase = passwordRulesProvider.RequireLowercase;
+    options.Password.RequireUppercase = passwordRulesProvider.RequireUppercase;
+    options.Password.RequireNonAlphanumeric = passwordRulesProvider.RequireNonAlphanumeric;
 });
 
 var app = builder.Build();
@@ -54,3 +63,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
