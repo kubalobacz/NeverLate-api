@@ -1,9 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
+using NeverLate_api.Persistence.Database;
 
 #nullable disable
 
 namespace NeverLate_api.Migrations
 {
+    [DbContext(typeof(NeverLateContext))]
+    [Migration("20220520213634_AddNormalisedColumnToUser")]
     public partial class AddNormalisedColumnToUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
