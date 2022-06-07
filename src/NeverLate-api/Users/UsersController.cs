@@ -1,9 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using NeverLate_api.Mediator;
 using NeverLate_api.Users.CreateUser;
 
-namespace NeverLate_api.Controllers;
+namespace NeverLate_api.Users;
 
 [ApiController]
 [Route("[controller]")]

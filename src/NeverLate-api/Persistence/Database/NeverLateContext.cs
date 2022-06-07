@@ -29,5 +29,7 @@ public class NeverLateContext : IdentityDbContext<IdentityUser>
             .Ignore(c => c.NormalizedUserName)
             .Ignore(c => c.PhoneNumberConfirmed)
             .Ignore(c => c.TwoFactorEnabled);
+
+        builder.ApplyConfigurationsFromAssembly(typeof(Program).Assembly);
     }
 }

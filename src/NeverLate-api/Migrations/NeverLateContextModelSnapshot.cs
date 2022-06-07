@@ -44,6 +44,16 @@ namespace NeverLate_api.Migrations
                         .HasDatabaseName("EmailIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "033e56d0-e75d-4835-a4d5-44a844d846ce",
+                            Email = "test_user_1@test.com",
+                            NormalizedEmail = "TEST_USER_1@TEST.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGFwqIuy4X3jodwMn62pYNZJXIxKJdsReyXATknTglsjJVz7GOosYaXhTt0J2gW/uw==",
+                            UserName = "test_user_1"
+                        });
                 });
 #pragma warning restore 612, 618
         }
