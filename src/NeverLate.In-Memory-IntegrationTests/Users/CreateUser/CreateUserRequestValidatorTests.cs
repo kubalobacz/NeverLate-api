@@ -56,7 +56,7 @@ public class CreateUserRequestValidatorTests
     }
     
     [Test]
-    public void Validator_PasswordHasLowercase_SetupShouldMatchConfigurationRules()
+    public void Validator_PasswordHasLowercaseRule_SetupShouldMatchConfigurationRules()
     {
         var mustContainLowercaseValidator = _validator.GetValidatorRulesForMember(r => r.Password)
             .Select(c => c.Validator)
@@ -74,7 +74,7 @@ public class CreateUserRequestValidatorTests
     }
     
     [Test]
-    public void Validator_PasswordHasUppercase_SetupShouldMatchConfigurationRules()
+    public void Validator_PasswordHasUppercaseRule_SetupShouldMatchConfigurationRules()
     {
         var mustContainUppercaseValidator = _validator.GetValidatorRulesForMember(r => r.Password)
             .Select(c => c.Validator)
@@ -92,7 +92,7 @@ public class CreateUserRequestValidatorTests
     }
     
     [Test]
-    public void Validator_PasswordHasNonAlphanumeric_SetupShouldMatchConfigurationRules()
+    public void Validator_PasswordHasNonAlphanumericRule_SetupShouldMatchConfigurationRules()
     {
         var mustContainNonAlphanumericValidator = _validator.GetValidatorRulesForMember(r => r.Password)
             .Select(c => c.Validator)
