@@ -38,14 +38,15 @@ builder.Services.AddDbContext<NeverLateContext>(options =>
 builder.Services.AddOptions();
 
 builder.Services.AddIdentityCore<IdentityUser>(options =>
-{
-    var passwordRulesProvider = builder.Configuration.GetSection("PasswordRules").Get<PasswordRulesProvider>();
-    options.Password.RequireDigit = passwordRulesProvider.RequireDigit;
-    options.Password.RequiredLength = passwordRulesProvider.RequiredLength;
-    options.Password.RequireLowercase = passwordRulesProvider.RequireLowercase;
-    options.Password.RequireUppercase = passwordRulesProvider.RequireUppercase;
-    options.Password.RequireNonAlphanumeric = passwordRulesProvider.RequireNonAlphanumeric;
-});
+    {
+        var passwordRulesProvider = builder.Configuration.GetSection("PasswordRules").Get<PasswordRulesProvider>();
+        options.Password.RequireDigit = passwordRulesProvider.RequireDigit;
+        options.Password.RequiredLength = passwordRulesProvider.RequiredLength;
+        options.Password.RequireLowercase = passwordRulesProvider.RequireLowercase;
+        options.Password.RequireUppercase = passwordRulesProvider.RequireUppercase;
+        options.Password.RequireNonAlphanumeric = passwordRulesProvider.RequireNonAlphanumeric;
+    })
+    .AddEntityFrameworkStores<NeverLateContext>();
 
 var app = builder.Build();
 
