@@ -15,7 +15,7 @@ public class Result<TValue, TErrorReason> where TErrorReason: struct
 {
     public bool IsSuccess { get; private init; }
     public TValue Value { get; private init; }
-    public TErrorReason ErrorReason { get; private init; }
+    public TErrorReason? ErrorReason { get; private init; }
 
     private Result() { }
 
