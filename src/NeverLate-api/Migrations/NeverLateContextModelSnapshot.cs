@@ -31,6 +31,10 @@ namespace NeverLate_api.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("longtext");
 
@@ -43,15 +47,19 @@ namespace NeverLate_api.Migrations
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex");
+
                     b.ToTable("AspNetUsers", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Id = "033e56d0-e75d-4835-a4d5-44a844d846ce",
+                            Id = "4d6a04f5-f5f5-4267-9797-6db304f04105",
                             Email = "test_user_1@test.com",
                             NormalizedEmail = "TEST_USER_1@TEST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGFwqIuy4X3jodwMn62pYNZJXIxKJdsReyXATknTglsjJVz7GOosYaXhTt0J2gW/uw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOQDwWuMGBlh/rmc2WTAM86K0+js0GxcPzISxN4dGan+4epO334YviOGICRArUZhgw==",
                             UserName = "test_user_1"
                         });
                 });
