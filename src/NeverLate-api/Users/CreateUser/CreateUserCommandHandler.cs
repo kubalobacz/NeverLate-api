@@ -24,6 +24,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Resul
         var identityUser = new IdentityUser
         {
             Email = request.Email,
+            UserName = request.Email
         };
         var createResult = await _userManager.CreateAsync(identityUser, request.Password);
         if (!createResult.Succeeded)
