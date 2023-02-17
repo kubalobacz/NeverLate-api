@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace NeverLate_api.Migrations
+namespace NeverLate_api.Migrations.Migrations
 {
     public partial class AddNormalisedUsernameColumn : Migration
     {

@@ -31,4 +31,10 @@ public class NeverLateContext : IdentityDbContext<IdentityUser>
 
         builder.ApplyConfigurationsFromAssembly(typeof(Program).Assembly);
     }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        base.OnConfiguring(optionsBuilder);
+        optionsBuilder.LogTo(message => Console.WriteLine(message));
+    }
 }

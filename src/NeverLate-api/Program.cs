@@ -33,7 +33,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<NeverLateContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("NeverLateDB");
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), x => x.MigrationsAssembly("NeverLate-api"));
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), x => x.MigrationsAssembly("NeverLate-api.Migrations"));
 });
 builder.Services.AddOptions();
 

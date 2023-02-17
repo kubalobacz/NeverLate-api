@@ -4,7 +4,7 @@ using NeverLate_api.Persistence.Database;
 
 #nullable disable
 
-namespace NeverLate_api.Migrations
+namespace NeverLate_api.Migrations.Migrations
 {
     [DbContext(typeof(NeverLateContext))]
     [Migration("20220517225447_InitialMigration")]

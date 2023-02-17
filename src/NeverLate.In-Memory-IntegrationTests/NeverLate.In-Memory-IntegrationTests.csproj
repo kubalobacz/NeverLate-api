@@ -5,7 +5,7 @@
         <Nullable>enable</Nullable>
 
         <IsPackable>false</IsPackable>
-
+        <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
         <RootNamespace>NeverLate.IntegrationTests</RootNamespace>
     </PropertyGroup>
 
@@ -16,10 +16,20 @@
         <PackageReference Include="NUnit" Version="3.13.2" />
         <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
         <PackageReference Include="coverlet.collector" Version="3.1.0" />
+        <PackageReference Include="Respawn" Version="5.0.1" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\NeverLate-api.Migrations\NeverLate-api.Migrations.csproj" />
       <ProjectReference Include="..\NeverLate-api\NeverLate-api.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="runtimeconfig.template.json">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

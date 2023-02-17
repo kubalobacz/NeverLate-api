@@ -14,9 +14,21 @@ public class UsersControllerTest : BaseTransactionTest
     public async Task CreateUser_ReturnsSuccessResponse_ForValidRequestModel()
     {
         Client.BaseAddress = new Uri("http://localhost/users");
-        var createUserRequest = new CreateUserRequest("zzzz@test.pl", "testtest123");
+        var createUserRequest = new CreateUserRequest("testuser@test.pl", "fooPassword123");
         var response = await Client.PostAsJsonAsync("", createUserRequest);
 
         response.Should().HaveStatusCode(HttpStatusCode.OK);
+    }
+
+    [Test]
+    public async Task CreateUser_ReturnsBadRequest_IfUserWithSameEmailFound()
+    {
+        Client.BaseAddress = new Uri("http://localhost/users");
+        var createUserRequest = new CreateUserRequest("testuser@test.pl", "fooPassword123");
+        await Client.PostAsJsonAsync("", createUserRequest);
+
+        var response = await Client.PostAsJsonAsync("", createUserRequest);
+
+        response.Should().HaveStatusCode(HttpStatusCode.BadRequest);
     }
 }

@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "NeverLateDB": "Server=localhost:3306;Database=NeverLate;Uid=root;password=Lesiaczek96!"
+  }
+}

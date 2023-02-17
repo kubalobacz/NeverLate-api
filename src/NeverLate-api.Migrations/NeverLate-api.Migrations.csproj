@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>NeverLate_api.Migrations</RootNamespace>
+        <OutputPath>..\NeverLate-api\bin\$(Configuration)</OutputPath>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\NeverLate-api\NeverLate-api.csproj" />
+    </ItemGroup>
+
+</Project>
