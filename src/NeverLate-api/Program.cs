@@ -2,8 +2,10 @@ using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using NeverLate_api.Authentication;
 using NeverLate_api.DependencyInjection.Extensions;
 using NeverLate_api.Persistence.Database;
@@ -47,6 +49,21 @@ builder.Services.AddIdentityCore<IdentityUser>(options =>
     options.Password.RequireNonAlphanumeric = passwordRulesProvider.RequireNonAlphanumeric;
 });
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        var auth0Configuration = builder.Configuration.GetSection("Auth0").Get<Auth0Configuration>();
+        options.Authority = auth0Configuration.Domain ;
+        options.Audience = auth0Configuration.Audience;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            ValidateLifetime = true,
+            ValidateIssuer = true,
+            ValidateAudience = true,
+        };
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -57,11 +74,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.MigrateDatabase();
 app.Run();
 
