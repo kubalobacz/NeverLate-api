@@ -31,7 +31,7 @@ public class UsersControllerTests
         _mediatorMock.Setup(m => m.Send(It.IsAny<CreateUserCommand>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(Result<Unit, CreateUserErrorReasonEnum>.Failure(CreateUserErrorReasonEnum.UserWithSameEmailFound));
         
-        var result = await _usersController.CreateUser(createUserRequest);
+        var result = await _usersController.CreateUser();
 
         result.Should().BeOfType<BadRequestResult>();
     }

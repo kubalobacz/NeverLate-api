@@ -1,13 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
-using NeverLate_api.Persistence.Database;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace NeverLate_api.Migrations
 {
-    [DbContext(typeof(NeverLateContext))]
-    [Migration("20220517225447_InitialMigration")]
     public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,6 +21,8 @@ namespace NeverLate_api.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Email = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    NormalizedEmail = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     PasswordHash = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
@@ -33,6 +31,16 @@ namespace NeverLate_api.Migrations
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "Email", "NormalizedEmail", "PasswordHash", "UserName" },
+                values: new object[] { "74979eb5-e6a5-448f-ae1e-99ab4b1ae45c", "test_user_1@test.com", "TEST_USER_1@TEST.COM", "AQAAAAEAACcQAAAAEIbcaZ9tGcvho9yA/4y4T+cAEZBjBVSy1mH9gN9CoyfVaVGOA6uGhdXsHbb8bOGp0g==", "test_user_1" });
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                table: "AspNetUsers",
+                column: "NormalizedEmail");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

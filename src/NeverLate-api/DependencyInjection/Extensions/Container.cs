@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NeverLate_api.Authentication;
+using NeverLate_api.Authentication.Token;
 using NeverLate_api.Persistence.Database;
 
 namespace NeverLate_api.DependencyInjection.Extensions;
@@ -16,6 +17,7 @@ public static class Container
         containerBuilder.RegisterType<NeverLateContext>().As<DbContext>().InstancePerLifetimeScope();
         containerBuilder.RegisterType<UserManager<IdentityUser>>().InstancePerLifetimeScope();
         containerBuilder.RegisterType<UserStore<IdentityUser>>().As<IUserStore<IdentityUser>>().InstancePerLifetimeScope();
+        containerBuilder.RegisterType<JwtDecoder>().As<IJwtDecoder>().InstancePerLifetimeScope();
     }
 
     public static void RegisterConfigurations(this IServiceCollection serviceCollection, WebApplicationBuilder builder)
