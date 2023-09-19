@@ -1,10 +1,12 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NeverLate_api.Users.CreateUser;
 
 namespace NeverLate_api.Users;
 
 [ApiController]
+[Authorize]
 [Route("[controller]")]
 public class UsersController : ControllerBase
 {
@@ -16,13 +18,13 @@ public class UsersController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> CreateUser(CreateUserRequest request)
+    public async Task<IActionResult> CreateUser()
     {
-        var result = await _mediator.Send(new CreateUserCommand(request.Email, request.Password));
+        var result = await _mediator.Send(new CreateUserCommand());
 
         return result switch
         {
-            {ErrorReason: CreateUserErrorReasonEnum.UserWithSameEmailFound} => BadRequest(),
+            {IsSuccess: false, ErrorReason: CreateUserErrorReasonEnum.UserWithSameEmailFound} => BadRequest(),
             {IsSuccess: false} => StatusCode(500, "Creating user failed."),
             _ => Ok("User created.")
         };
