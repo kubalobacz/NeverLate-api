@@ -26,7 +26,6 @@ public class NeverLateContext : IdentityDbContext<IdentityUser>
             .Ignore(c => c.PhoneNumber)
             .Ignore(c => c.SecurityStamp)
             .Ignore(c => c.AccessFailedCount)
-            .Ignore(c => c.NormalizedUserName)
             .Ignore(c => c.PhoneNumberConfirmed)
             .Ignore(c => c.TwoFactorEnabled);
 
